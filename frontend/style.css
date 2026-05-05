@@ -23,21 +23,40 @@
     --welcome-bg: #1e3a5f;
     --welcome-border: #2563eb;
     --code-bg: rgba(0, 0, 0, 0.2);
+    --link-color: #7dd3fc;
+    --send-button-shadow: rgba(37, 99, 235, 0.3);
 }
 
 /* Light Theme */
-body.light-theme {
+body[data-theme="light"] {
+    /* Backgrounds and surfaces */
     --background: #f8fafc;
     --surface: #ffffff;
     --surface-hover: #f1f5f9;
+
+    /* Primary colors — darkened for WCAG AA contrast on light backgrounds */
+    --primary-color: #1d4ed8;
+    --primary-hover: #1e3a8a;
+    --user-message: #1d4ed8;
+    --focus-ring: rgba(29, 78, 216, 0.25);
+    --send-button-shadow: rgba(29, 78, 216, 0.25);
+
+    /* Text — dark for contrast */
     --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
+    --text-secondary: #475569;
+
+    /* Borders and surfaces */
+    --border-color: #cbd5e1;
     --assistant-message: #f1f5f9;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+
+    /* Accent areas */
     --welcome-bg: #eff6ff;
-    --welcome-border: #2563eb;
-    --code-bg: rgba(0, 0, 0, 0.06);
+    --welcome-border: #1d4ed8;
+    --code-bg: rgba(15, 23, 42, 0.06);
+
+    /* Links — accessible deep blue (7.3:1 contrast on white, AAA) */
+    --link-color: #1d4ed8;
 }
 
 /* Base Styles */
@@ -381,7 +400,7 @@ header h1 {
 }
 
 .message-content a {
-    color: #7dd3fc;
+    color: var(--link-color);
     text-decoration: none;
 }
 
@@ -458,7 +477,7 @@ header h1 {
 #sendButton:hover:not(:disabled) {
     background: var(--primary-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px var(--send-button-shadow);
 }
 
 #sendButton:active:not(:disabled) {
@@ -764,12 +783,12 @@ details[open] .suggested-header::before {
 }
 
 /* Light mode: show moon icon */
-body.light-theme .sun-icon {
+body[data-theme="light"] .sun-icon {
     opacity: 0;
     transform: rotate(-90deg) scale(0.5);
 }
 
-body.light-theme .moon-icon {
+body[data-theme="light"] .moon-icon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
 }

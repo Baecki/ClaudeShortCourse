@@ -26,15 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Functions
 function initTheme() {
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-theme');
-    }
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.body.dataset.theme = saved;
 }
 
 function toggleTheme() {
-    document.body.classList.toggle('light-theme');
-    const isLight = document.body.classList.contains('light-theme');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const isLight = document.body.dataset.theme === 'light';
+    document.body.dataset.theme = isLight ? 'dark' : 'light';
+    localStorage.setItem('theme', document.body.dataset.theme);
 }
 
 // Event Listeners
