@@ -22,3 +22,9 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
+addopts = "-v"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::ResourceWarning",
+    "ignore::UserWarning:chromadb",
+]
