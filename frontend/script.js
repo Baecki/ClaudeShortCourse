@@ -5,7 +5,7 @@ const API_URL = "/api";
 let currentSessionId = null;
 
 // DOM elements
-let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatBtn;
+let chatMessages, chatInput, sendButton, totalCourses, courseTitles, newChatBtn, themeToggle;
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,14 +16,31 @@ document.addEventListener("DOMContentLoaded", () => {
   totalCourses = document.getElementById("totalCourses");
   courseTitles = document.getElementById("courseTitles");
   newChatBtn = document.getElementById("newChatBtn");
+  themeToggle = document.getElementById("themeToggle");
 
+  initTheme();
   setupEventListeners();
   createNewSession();
   loadCourseStats();
 });
 
+// Theme Functions
+function initTheme() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    document.body.dataset.theme = saved;
+}
+
+function toggleTheme() {
+    const isLight = document.body.dataset.theme === 'light';
+    document.body.dataset.theme = isLight ? 'dark' : 'light';
+    localStorage.setItem('theme', document.body.dataset.theme);
+}
+
 // Event Listeners
 function setupEventListeners() {
+  // Theme toggle
+  themeToggle.addEventListener("click", toggleTheme);
+
   // New chat
   newChatBtn.addEventListener("click", startNewChat);
 
